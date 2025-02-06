@@ -1,0 +1,14 @@
+Sprite2D
+CanvasGroup
+CollisionShape2D
+Area2D
+AnimationPlayer
+AudioStreamPlayer2D
+GPUParticles2D
+HitBoxComponent
+ProgressBar
+CanvasLayer
+HealthComponent
+CharacterBody2D
+Marker2D
+Node2D

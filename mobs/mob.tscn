@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://fe2xfmi240lu"]
+
+[ext_resource type="Texture2D" uid="uid://nohjoiah3jgr" path="res://mobs/sword_inactive.png" id="1_awguh"]
+[ext_resource type="Script" path="res://mobs/mob.gd" id="1_kjq0o"]
+[ext_resource type="Script" path="res://common/health_component.gd" id="3_4m8ym"]
+[ext_resource type="Script" path="res://common/hitbox_component.gd" id="5_dfj7x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7quh"]
+radius = 400.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt70p"]
+radius = 15.5
+height = 120.65
+
+[sub_resource type="Animation" id="Animation_1ova8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vykix"]
+resource_name = "take_damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.819267, 0.0218872, 9.62615e-08, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_56ljh"]
+_data = {
+"RESET": SubResource("Animation_1ova8"),
+"take_damage": SubResource("Animation_vykix")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4ee6"]
+radius = 21.5
+height = 160.0
+
+[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("hit_box")]
+motion_mode = 1
+script = ExtResource("1_kjq0o")
+hit_box = NodePath("HitBoxComponent")
+
+[node name="ActivationArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+shape = SubResource("CircleShape2D_c7quh")
+debug_color = Color(0.217042, 0.631139, 0.300152, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_awguh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_wt70p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_56ljh")
+}
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_4m8ym")
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_componnent")]
+script = ExtResource("5_dfj7x")
+health_componnent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_s4ee6")
+debug_color = Color(0.858999, 0.146617, 0.273656, 0.42)

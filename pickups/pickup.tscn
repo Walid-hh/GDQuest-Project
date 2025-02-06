@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://be1vrdxu0td5m"]
+
+[ext_resource type="Script" path="res://pickups/pickup.gd" id="1_xdneb"]
+[ext_resource type="Script" path="res://common/hitbox_component.gd" id="2_b5ap6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jo4c5"]
+radius = 26.0
+
+[sub_resource type="Animation" id="Animation_o1xd1"]
+resource_name = "collected"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8sqwa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgslc"]
+_data = {
+"RESET": SubResource("Animation_8sqwa"),
+"collected": SubResource("Animation_o1xd1")
+}
+
+[node name="PickUp" type="Node2D" node_paths=PackedStringArray("hit_box")]
+script = ExtResource("1_xdneb")
+hit_box = NodePath("HitBoxComponent")
+
+[node name="ItemImage" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_b5ap6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_jo4c5")
+
+[node name="ItemParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+amount = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_rgslc")
+}
