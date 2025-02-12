@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://blyo2xefgk7kw"]
+
+[ext_resource type="Script" path="res://weapons/mob_weapon.gd" id="1_e36pl"]
+[ext_resource type="AudioStream" uid="uid://baatxna4415hc" path="res://weapons/bullets/hit_fire.wav" id="2_8vu7a"]
+[ext_resource type="Resource" uid="uid://bmywvqheubynw" path="res://weapons/mob_weapon.tres" id="2_81w1t"]
+
+[node name="MobWeapon" type="Node2D"]
+script = ExtResource("1_e36pl")
+weapon = ExtResource("2_81w1t")
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_8vu7a")
+volume_db = -15.0
+
+[node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true

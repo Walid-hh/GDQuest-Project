@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn12vpt6735cq"]
+
+[ext_resource type="Texture2D" uid="uid://cwurq7yvv5xdu" path="res://teleporter/teleporter_base.png" id="1_eaj12"]
+[ext_resource type="Script" path="res://teleporter/teleporter.gd" id="1_knr60"]
+[ext_resource type="Texture2D" uid="uid://cb5e2w7i8756i" path="res://teleporter/teleporter_beam_green.png" id="2_lafdc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rsy0"]
+size = Vector2(156, 156)
+
+[node name="Teleporter" type="Area2D"]
+script = ExtResource("1_knr60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eaj12")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_lafdc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8rsy0")

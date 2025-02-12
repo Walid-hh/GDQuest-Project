@@ -1,6 +1,10 @@
+res://weapons
+res://mobs
+res://weapons/bullets
+res://teleporter
+res://common
+res://levels
+res://pickups/chest
 res://pickups
 res://common/particles
-res://mobs
-res://weapons
-res://weapons/bullets
 res://player

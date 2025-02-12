@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponClass" load_steps=3 format=3 uid="uid://bmywvqheubynw"]
+
+[ext_resource type="PackedScene" uid="uid://c6n1w8rc33kfg" path="res://weapons/bullets/bullet.tscn" id="1_wi7ts"]
+[ext_resource type="Script" path="res://weapons/weapon_class.gd" id="2_qg032"]
+
+[resource]
+script = ExtResource("2_qg032")
+bullet_type = ExtResource("1_wi7ts")
+bullet_speed = 400.0
+bullet_max_range = 800.0
+bullet_max_random_angle = 0.05
+bullet_damage = 1

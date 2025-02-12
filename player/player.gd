@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var hit_box: HitBoxComponent 
+@onready var weapon: Node2D = %Weapon
 const SPEED := 500.0
 const ACCELERATION := 1400.0
 const DECELERATION := 1200.0

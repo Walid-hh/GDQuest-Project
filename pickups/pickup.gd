@@ -10,13 +10,13 @@ var initial_position : Vector2
 
 func _ready() -> void:
 
-	var audioplayer := AudioStreamPlayer2D.new()
+	var audioplayer := AudioStreamPlayer.new()
 	item_image.texture = item.item_image
 	item_particles.texture = item.item_particle_texture
 	item_particles.process_material = item.item_particle_effect
-	initial_position = position
-	off_set = position + Vector2(0 , -20)
-	_animate_item()
+	#initial_position = position
+	#off_set = position + Vector2(0 , -20)
+	#_animate_item()
 	hit_box.area_entered.connect(func(area)-> void :
 		if area is HitBoxComponent:
 			if area.get_parent() is Player:
@@ -31,11 +31,12 @@ func _ready() -> void:
 	audioplayer.finished.connect(func()-> void :
 		audioplayer.queue_free())
 
-func _animate_item():
-	var tween := create_tween()
-	var duration := 1
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self , "position" , off_set, duration)
-	tween.tween_property(self , "position" , initial_position , duration)
-	tween.set_loops()
+#func _animate_item():
+	#await get_tree().create_timer(1).timeout
+	#var tween := create_tween()
+	#var duration := 1
+	#tween.set_trans(Tween.TRANS_LINEAR)
+	#tween.set_ease(Tween.EASE_OUT)
+	#tween.tween_property(self , "position" , off_set, duration)
+	#tween.tween_property(self , "position" , initial_position , duration)
+	#tween.set_loops()

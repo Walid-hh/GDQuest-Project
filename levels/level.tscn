@@ -1,0 +1,149 @@
+[gd_scene load_steps=19 format=4 uid="uid://dygquq2o0bqd8"]
+
+[ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background/background_blue_sky.tscn" id="1_h5myr"]
+[ext_resource type="PackedScene" uid="uid://c3fl3stluv0gn" path="res://levels/bridges.tscn" id="1_u514y"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_y33sx"]
+[ext_resource type="PackedScene" uid="uid://dlxjrgals3rg2" path="res://levels/invisible_walls.tscn" id="2_coqau"]
+[ext_resource type="PackedScene" uid="uid://dgayuh42w4v6u" path="res://levels/rooms/room_b.tscn" id="2_oc0h6"]
+[ext_resource type="PackedScene" uid="uid://cu2rb5dl4ljte" path="res://levels/rooms/room_a.tscn" id="3_bnkwj"]
+[ext_resource type="PackedScene" uid="uid://cq0mmphkbrvmm" path="res://levels/rooms/room_c.tscn" id="4_etbeh"]
+[ext_resource type="PackedScene" uid="uid://diw0kp1e3livt" path="res://levels/rooms/room_d.tscn" id="5_mwopk"]
+[ext_resource type="PackedScene" uid="uid://di0tuy5rr0dn" path="res://player/player.tscn" id="8_dxkam"]
+[ext_resource type="Shader" path="res://common/shaders/blur_and_tint.gdshader" id="10_k1x6q"]
+[ext_resource type="Script" path="res://levels/end_menu.gd" id="10_yc3yy"]
+[ext_resource type="FontFile" uid="uid://d3u2nhkuevn1l" path="res://addons/gdpractice/assets/fonts/Inter-Bold.ttf" id="11_bynjp"]
+[ext_resource type="Theme" uid="uid://dife0oi6xhbyy" path="res://common/button_theme.tres" id="12_1jjx0"]
+[ext_resource type="PackedScene" uid="uid://cn12vpt6735cq" path="res://teleporter/teleporter.tscn" id="14_kop2x"]
+[ext_resource type="AudioStream" uid="uid://cgkhr5s5txcxx" path="res://common/music/EZDNB2 (CC-BY Of Far Different Nature).ogg" id="15_h380c"]
+
+[sub_resource type="Theme" id="Theme_ypybh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojx6x"]
+shader = ExtResource("10_k1x6q")
+shader_parameter/blur_amount = 0.7
+shader_parameter/tint = Color(0.117647, 0.486275, 0.913725, 1)
+shader_parameter/tint_strength = 0.4
+shader_parameter/saturation = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h80ja"]
+shader = ExtResource("10_k1x6q")
+shader_parameter/blur_amount = 0.0
+shader_parameter/tint = Color(0.133333, 0.376471, 0.992157, 1)
+shader_parameter/tint_strength = 0.71
+shader_parameter/saturation = 1.0
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_y33sx")
+
+[node name="Bridges" parent="." instance=ExtResource("1_u514y")]
+position = Vector2(1664, 2048)
+tile_map_data = PackedByteArray("AAABAP3/AAAFAAEAAAABAP7/AAADAAEAAAABAP//AAACAAAAAAACAP//AAAAAAEAAAADAP//AAAAAAEAAAAEAP//AAAAAAEAAAAFAP//AAAAAAAAAAAFAAAAAAADAAEAAAAFAAEAAAADAAEAAAAFAAIAAAAEAAEAAAD5/wUAAAADAAEAAADx/woAAAADAAEAAADx/wsAAAADAAEAAADx/wwAAAACAAAAAADy/wwAAAAAAAEAAADz/wwAAAAAAAEAAAD0/wwAAAAAAAEAAAD1/wwAAAAAAAAAAAD1/w0AAAADAAEAAAD1/w4AAAADAAEAAAD1/w8AAAAEAAEAAAABAPz/AAAEAAEAAAABAPv/AAAFAAEAAAD5/wQAAAADAAEAAAD5/wMAAAAAAAAAAAD4/wMAAAAAAAEAAAD3/wMAAAAAAAEAAAD2/wMAAAABAAEAAADx/wkAAAADAAEAAADx/wgAAAAFAAEAAAD5/wYAAAACAAAAAAD6/wYAAAAAAAEAAAD7/wYAAAAAAAEAAAD8/wYAAAAAAAEAAAD9/wYAAAACAAEAAAA=")
+
+[node name="InvisibleWalls" parent="." instance=ExtResource("2_coqau")]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAEABIAAAAAAAAAAAAEABQAAAAAAAAAAAAFABQAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAFABcAAAAAAAAAAAAGABcAAAAAAAAAAAAHABcAAAAAAAAAAAAIABcAAAAAAAAAAAAJABcAAAAAAAAAAAAFABIAAAAAAAAAAAAGABIAAAAAAAAAAAAHABIAAAAAAAAAAAAHABMAAAAAAAAAAAAHABQAAAAAAAAAAAAHABUAAAAAAAAAAAAIABUAAAAAAAAAAAAJABUAAAAAAAAAAAANAA0AAAAAAAAAAAANAA4AAAAAAAAAAAANAA8AAAAAAAAAAAANABAAAAAAAAAAAAAOABAAAAAAAAAAAAAPABAAAAAAAAAAAAAQABAAAAAAAAAAAAARABAAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAD//xoAAAAAAAAAAAD//xsAAAAAAAAAAAAAABsAAAAAAAAAAAABABsAAAAAAAAAAAACABsAAAAAAAAAAAADABsAAAAAAAAAAAADABwAAAAAAAAAAAADAB0AAAAAAAAAAAABAB0AAAAAAAAAAAAAAB0AAAAAAAAAAAD//x0AAAAAAAAAAAD+/x0AAAAAAAAAAAD9/x0AAAAAAAAAAAD9/xwAAAAAAAAAAAD9/xsAAAAAAAAAAAD9/xoAAAAAAAAAAAA=")
+
+[node name="BackgroundBlueSky" parent="." instance=ExtResource("1_h5myr")]
+
+[node name="RoomB" parent="." instance=ExtResource("2_oc0h6")]
+position = Vector2(1408, 2304)
+
+[node name="RoomA" parent="." instance=ExtResource("3_bnkwj")]
+position = Vector2(-1024, 1920)
+
+[node name="RoomC" parent="." instance=ExtResource("4_etbeh")]
+position = Vector2(640, 128)
+
+[node name="RoomD" parent="." instance=ExtResource("5_mwopk")]
+position = Vector2(-512, 3968)
+
+[node name="Player" parent="." instance=ExtResource("8_dxkam")]
+unique_name_in_owner = true
+position = Vector2(1215, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="EndMenu" type="Control" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ypybh")
+script = ExtResource("10_yc3yy")
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/EndMenu"]
+material = SubResource("ShaderMaterial_ojx6x")
+layout_mode = 0
+offset_top = 3.0
+offset_right = 1924.0
+offset_bottom = 1077.0
+
+[node name="Containerbackground" type="ColorRect" parent="CanvasLayer/EndMenu"]
+material = SubResource("ShaderMaterial_h80ja")
+layout_mode = 0
+offset_left = 681.0
+offset_top = 324.0
+offset_right = 1193.0
+offset_bottom = 708.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndMenu/Containerbackground"]
+layout_mode = 2
+offset_left = 94.0
+offset_top = 74.0
+offset_right = 405.0
+offset_bottom = 280.0
+
+[node name="Label" type="Label" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.55
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_fonts/font = ExtResource("11_bynjp")
+theme_override_font_sizes/font_size = 25
+text = "You won!"
+
+[node name="Label2" type="Label" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_fonts/font = ExtResource("11_bynjp")
+theme_override_font_sizes/font_size = 20
+text = "Time : 
+"
+
+[node name="Replay" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.65
+theme = ExtResource("12_1jjx0")
+text = "Play Again"
+
+[node name="Exit" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.65
+theme = ExtResource("12_1jjx0")
+text = "Exit game"
+
+[node name="Teleporter" parent="." instance=ExtResource("14_kop2x")]
+position = Vector2(-192, 5044)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_h380c")
+volume_db = -40.0
+autoplay = true
+parameters/looping = true

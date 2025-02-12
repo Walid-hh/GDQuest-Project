@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://m8q36rnml14f"]
+
+[ext_resource type="Script" path="res://weapons/spray_fire.gd" id="1_yda0e"]
+[ext_resource type="AudioStream" uid="uid://baatxna4415hc" path="res://weapons/bullets/hit_fire.wav" id="4_tnu1w"]
+
+[node name="Weapon" type="Node2D"]
+position = Vector2(780, 300)
+script = ExtResource("1_yda0e")
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_tnu1w")
+volume_db = -15.0
+
+[node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true

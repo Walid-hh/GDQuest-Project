@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp8pxpvfueyn5"]
+
+[ext_resource type="Script" path="res://weapons/bullets/ice_bullet.gd" id="1_lrhi2"]
+[ext_resource type="Texture2D" uid="uid://ckoa50clntt4t" path="res://weapons/bullets/ice.png" id="2_akeh3"]
+[ext_resource type="Texture2D" uid="uid://cjy7elomc65rm" path="res://common/particles/ice_2.png" id="3_y10o0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04n6g"]
+size = Vector2(110, 50)
+
+[sub_resource type="Gradient" id="Gradient_p4333"]
+colors = PackedColorArray(1, 1, 1, 1, 0.384314, 0.87451, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vslls"]
+gradient = SubResource("Gradient_p4333")
+
+[sub_resource type="Curve" id="Curve_n1fja"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.285714), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mn73i"]
+curve = SubResource("Curve_n1fja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wbc6"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-50, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(30, 10, 1)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mn73i")
+color_ramp = SubResource("GradientTexture1D_vslls")
+
+[node name="IceBullet" type="Area2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_lrhi2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_akeh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_04n6g")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_2wbc6")
+texture = ExtResource("3_y10o0")

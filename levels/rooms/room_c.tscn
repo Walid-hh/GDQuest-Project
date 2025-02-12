@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://cq0mmphkbrvmm"]
+[gd_scene load_steps=8 format=4 uid="uid://cq0mmphkbrvmm"]
 
 [ext_resource type="Script" path="res://levels/rooms/room.gd" id="1_3m03d"]
 [ext_resource type="TileSet" uid="uid://bq65uwha45com" path="res://levels/rooms/tilesets/floating_dungeon_tileset.tres" id="1_iyg7j"]
 [ext_resource type="TileSet" uid="uid://cqb2wtrubw0n6" path="res://levels/rooms/tilesets/tileset_invisible_walls.tres" id="2_fateu"]
 [ext_resource type="PackedScene" uid="uid://ke0kmcp0efiv" path="res://levels/rooms/tilemap_layer_walls.tscn" id="3_urgs7"]
+[ext_resource type="PackedScene" uid="uid://d3r0lass4405v" path="res://pickups/chest/chest.tscn" id="5_jjkr0"]
+[ext_resource type="Script" path="res://pickups/item.gd" id="6_wsy7r"]
+[ext_resource type="Resource" uid="uid://csstqplsbrqe8" path="res://pickups/Heal_pickup.tres" id="7_c5vxl"]
 
 [node name="RoomC" type="Node2D"]
 y_sort_enabled = true
@@ -25,3 +28,11 @@ unique_name_in_owner = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAMAAAABAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAACAP//AAAAAAAAAAACAAcAAAABAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAP//AAAAAAAAAAADAAkAAAABAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAAEAP//AAAAAAAAAAAEAAoAAAABAAAAAAAEAAsAAAAAAAAAAAAFAP//AAAAAAAAAAAFAAoAAAABAAAAAAAFAAsAAAAAAAAAAAAGAP//AAAAAAAAAAAGAAoAAAABAAAAAAAGAAsAAAAAAAAAAAAHAP//AAAAAAAAAAAHAAoAAAABAAAAAAAHAAsAAAAAAAAAAAAIAP//AAAAAAAAAAAIAAUAAAABAAAAAAAIAAYAAAAAAAAAAAAIAAoAAAABAAAAAAAIAAsAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAoAAAABAAAAAAAKAAsAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAA=")
 tile_set = ExtResource("2_fateu")
+
+[node name="Chest" parent="." instance=ExtResource("5_jjkr0")]
+position = Vector2(961, 427)
+item_list = Array[ExtResource("6_wsy7r")]([ExtResource("7_c5vxl")])
+
+[node name="Chest2" parent="." instance=ExtResource("5_jjkr0")]
+position = Vector2(830, 1072)
+item_list = Array[ExtResource("6_wsy7r")]([ExtResource("7_c5vxl")])

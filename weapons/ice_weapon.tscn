@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfgaoatv0u18n"]
+
+[ext_resource type="PackedScene" uid="uid://m8q36rnml14f" path="res://weapons/weapon.tscn" id="1_rssip"]
+[ext_resource type="Script" path="res://weapons/charge_weapon.gd" id="2_3lysa"]
+[ext_resource type="Texture2D" uid="uid://djnqskxeihg82" path="res://player/hand_ice.png" id="2_mgesg"]
+[ext_resource type="Resource" uid="uid://cf2svjnt32kv6" path="res://weapons/ice_weapon.tres" id="3_k4818"]
+[ext_resource type="Texture2D" uid="uid://bnylevqfafff1" path="res://common/particles/ice_1.png" id="3_uesov"]
+[ext_resource type="AudioStream" uid="uid://byur8a6v8a7y" path="res://weapons/bullets/hit_ice.wav" id="4_bh30t"]
+
+[sub_resource type="Curve" id="Curve_6aojg"]
+_data = [Vector2(0.0529801, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.208791), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_613rh"]
+curve = SubResource("Curve_6aojg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pq1jb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 30, 1)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_613rh")
+
+[node name="IceWeapon" instance=ExtResource("1_rssip")]
+script = ExtResource("2_3lysa")
+weapon = ExtResource("3_k4818")
+
+[node name="BulletSound" parent="." index="0"]
+stream = ExtResource("4_bh30t")
+
+[node name="HandRight" parent="." index="2"]
+scale = Vector2(1, -1)
+texture = ExtResource("2_mgesg")
+
+[node name="HandLeft" parent="." index="3"]
+texture = ExtResource("2_mgesg")
+
+[node name="IceParticles" type="GPUParticles2D" parent="." index="4"]
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_pq1jb")
+texture = ExtResource("3_uesov")
+lifetime = 0.5

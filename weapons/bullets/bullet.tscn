@@ -10,6 +10,7 @@ height = 55.6
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_q2oh3")
+target_player = true
 
 [node name="FireTrail" type="Sprite2D" parent="."]
 position = Vector2(-31, 0)
