@@ -1,7 +1,7 @@
 extends Control
 
-@onready var replay: Button = %Replay
-@onready var exit: Button = %Exit
+@onready var replay: Button = %ReplayButton
+@onready var exit: Button = %ExitButton
 @onready var label_2: Label = %Label2
 var start_timer : float
 
@@ -18,8 +18,3 @@ func toggle() -> void :
 		var time_elapsed := Time.get_ticks_msec() - start_timer
 		time_elapsed = snappedf(time_elapsed/1000 , 0.1)
 		label_2.text = "Time : " + str(time_elapsed) + "s"
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		toggle()
-		

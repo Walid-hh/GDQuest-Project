@@ -176,7 +176,8 @@ script = ExtResource("5_e2boy")
 
 [node name="WeaponAnchor" type="Marker2D" parent="WeaponPivot"]
 
-[node name="IceWeapon" parent="WeaponPivot/WeaponAnchor" instance=ExtResource("6_xcy3u")]
+[node name="Weapon" parent="WeaponPivot/WeaponAnchor" instance=ExtResource("6_xcy3u")]
+unique_name_in_owner = true
 position = Vector2(90, 0)
 
 [node name="HealthComponent" type="Node2D" parent="."]

@@ -10,8 +10,8 @@ radius = 33.0
 height = 94.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_woo61"]
-radius = 38.0
-height = 110.0
+radius = 49.0
+height = 122.0
 
 [node name="ShootingMob" instance=ExtResource("1_78yhy")]
 script = ExtResource("2_4532n")

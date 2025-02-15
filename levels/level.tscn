@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dygquq2o0bqd8"]
+[gd_scene load_steps=29 format=4 uid="uid://dygquq2o0bqd8"]
 
 [ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background/background_blue_sky.tscn" id="1_h5myr"]
 [ext_resource type="PackedScene" uid="uid://c3fl3stluv0gn" path="res://levels/bridges.tscn" id="1_u514y"]
@@ -13,23 +13,39 @@
 [ext_resource type="Script" path="res://levels/end_menu.gd" id="10_yc3yy"]
 [ext_resource type="FontFile" uid="uid://d3u2nhkuevn1l" path="res://addons/gdpractice/assets/fonts/Inter-Bold.ttf" id="11_bynjp"]
 [ext_resource type="Theme" uid="uid://dife0oi6xhbyy" path="res://common/button_theme.tres" id="12_1jjx0"]
+[ext_resource type="Theme" uid="uid://cosfocaqo1csg" path="res://ui/dialogue/dialogue_theme.tres" id="14_1auno"]
 [ext_resource type="PackedScene" uid="uid://cn12vpt6735cq" path="res://teleporter/teleporter.tscn" id="14_kop2x"]
+[ext_resource type="Script" path="res://levels/dialogue.gd" id="15_1kimh"]
+[ext_resource type="Texture2D" uid="uid://copkt78vgp37i" path="res://npc/dialogue/sophia.png" id="15_dkq85"]
 [ext_resource type="AudioStream" uid="uid://cgkhr5s5txcxx" path="res://common/music/EZDNB2 (CC-BY Of Far Different Nature).ogg" id="15_h380c"]
+[ext_resource type="Texture2D" uid="uid://d000xjtr4iqtk" path="res://npc/dialogue/emotion_regular.png" id="16_b2fhw"]
+[ext_resource type="PackedScene" uid="uid://dqrhv7v2mxca5" path="res://npc/npc.tscn" id="17_5t8vo"]
+[ext_resource type="AudioStream" uid="uid://chgko4hmxwxu5" path="res://npc/dialogue/talking_synth.ogg" id="19_doate"]
+[ext_resource type="Script" path="res://ui/menu_controller.gd" id="20_3ecgb"]
+[ext_resource type="Script" path="res://levels/pause_menu.gd" id="20_lpjyh"]
+[ext_resource type="Script" path="res://ui/settings_menu.gd" id="21_t4ehg"]
 
 [sub_resource type="Theme" id="Theme_ypybh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ojx6x"]
 shader = ExtResource("10_k1x6q")
 shader_parameter/blur_amount = 0.7
-shader_parameter/tint = Color(0.117647, 0.486275, 0.913725, 1)
+shader_parameter/tint = Color(0.000999787, 0.0320779, 0.104032, 1)
 shader_parameter/tint_strength = 0.4
 shader_parameter/saturation = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h80ja"]
 shader = ExtResource("10_k1x6q")
 shader_parameter/blur_amount = 0.0
-shader_parameter/tint = Color(0.133333, 0.376471, 0.992157, 1)
+shader_parameter/tint = Color(0.000528903, 0.0273524, 0.202627, 1)
 shader_parameter/tint_strength = 0.71
+shader_parameter/saturation = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7c1d"]
+shader = ExtResource("10_k1x6q")
+shader_parameter/blur_amount = 0.0
+shader_parameter/tint = Color(0, 0, 0, 1)
+shader_parameter/tint_strength = 0.5
 shader_parameter/saturation = 1.0
 
 [node name="Level" type="Node2D"]
@@ -61,6 +77,10 @@ position = Vector2(-512, 3968)
 [node name="Player" parent="." instance=ExtResource("8_dxkam")]
 unique_name_in_owner = true
 position = Vector2(1215, 540)
+
+[node name="Npc" parent="." instance=ExtResource("17_5t8vo")]
+unique_name_in_owner = true
+position = Vector2(1290, 349)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -121,7 +141,7 @@ theme_override_font_sizes/font_size = 20
 text = "Time : 
 "
 
-[node name="Replay" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+[node name="ReplayButton" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -130,7 +150,7 @@ size_flags_stretch_ratio = 0.65
 theme = ExtResource("12_1jjx0")
 text = "Play Again"
 
-[node name="Exit" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="CanvasLayer/EndMenu/Containerbackground/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -139,6 +159,262 @@ size_flags_stretch_ratio = 0.65
 theme = ExtResource("12_1jjx0")
 text = "Exit game"
 
+[node name="Dialogue" type="Control" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchor_right = 1.131
+anchor_bottom = 1.0
+offset_right = -250.52
+offset_bottom = -2.0
+theme = ExtResource("14_1auno")
+script = ExtResource("15_1kimh")
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/Dialogue"]
+material = SubResource("ShaderMaterial_i7c1d")
+layout_mode = 0
+offset_top = 840.0
+offset_right = 1916.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 21.2
+anchor_right = 48.057
+anchor_bottom = 27.0
+offset_top = -22015.6
+offset_right = -90397.5
+offset_bottom = -28028.0
+
+[node name="TextureRect" type="MarginContainer" parent="CanvasLayer/Dialogue/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.7
+
+[node name="Face" type="Sprite2D" parent="CanvasLayer/Dialogue/HBoxContainer/TextureRect"]
+position = Vector2(223, 21)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("15_dkq85")
+
+[node name="Expression" type="Sprite2D" parent="CanvasLayer/Dialogue/HBoxContainer/TextureRect/Face"]
+position = Vector2(-5.71429, 4.28564)
+texture = ExtResource("16_b2fhw")
+
+[node name="DialogueText" type="RichTextLabel" parent="CanvasLayer/Dialogue/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 9.0
+text = "Hello
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Dialogue/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Dialogue/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.65
+
+[node name="Next" type="Button" parent="CanvasLayer/Dialogue/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+text = "Next"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Dialogue/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="DialogueAudio" type="AudioStreamPlayer" parent="CanvasLayer/Dialogue"]
+unique_name_in_owner = true
+stream = ExtResource("19_doate")
+
+[node name="MenuController" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("20_3ecgb")
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/MenuController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("20_lpjyh")
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/MenuController/PauseMenu"]
+material = SubResource("ShaderMaterial_ojx6x")
+layout_mode = 0
+offset_top = 3.0
+offset_right = 1924.0
+offset_bottom = 1077.0
+
+[node name="Containerbackground" type="ColorRect" parent="CanvasLayer/MenuController/PauseMenu"]
+material = SubResource("ShaderMaterial_h80ja")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.94
+anchor_bottom = 27.025
+offset_left = 681.0
+offset_top = 324.0
+offset_right = -724.6
+offset_bottom = -373.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuController/PauseMenu/Containerbackground"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 154.0
+offset_top = 61.0
+offset_right = -167.0
+offset_bottom = -61.0
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuController/PauseMenu/Containerbackground/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.55
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_fonts/font = ExtResource("11_bynjp")
+theme_override_font_sizes/font_size = 25
+text = "Pause Menu"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/MenuController/PauseMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource("12_1jjx0")
+text = "Settings"
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/MenuController/PauseMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource("12_1jjx0")
+text = "Resume"
+
+[node name="Exit" type="Button" parent="CanvasLayer/MenuController/PauseMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource("12_1jjx0")
+text = "Exit"
+
+[node name="SettingsMenu" type="Control" parent="CanvasLayer/MenuController"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_right = 48.002
+anchor_bottom = 26.93
+offset_right = -1880.08
+offset_bottom = -1037.2
+theme = ExtResource("12_1jjx0")
+script = ExtResource("21_t4ehg")
+
+[node name="Blur2" type="ColorRect" parent="CanvasLayer/MenuController/SettingsMenu"]
+material = SubResource("ShaderMaterial_ojx6x")
+layout_mode = 0
+offset_top = 3.0
+offset_right = 1924.0
+offset_bottom = 1077.0
+
+[node name="Containerbackground" type="ColorRect" parent="CanvasLayer/MenuController/SettingsMenu"]
+material = SubResource("ShaderMaterial_h80ja")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.751
+anchor_bottom = 26.899
+offset_left = 681.0
+offset_top = 324.0
+offset_right = -717.04
+offset_bottom = -367.96
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.078
+anchor_right = 1.0
+anchor_bottom = 0.849
+offset_left = 37.0
+offset_top = 0.0480003
+offset_right = -36.0
+offset_bottom = -0.0160217
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.4
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_fonts/font = ExtResource("11_bynjp")
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_font_sizes/font_size = 25
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.501961, 0.768627, 0.815686, 1)
+theme_override_font_sizes/font_size = 25
+text = "Sfx
+"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="SfxSlider" type="HSlider" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+min_value = -30.0
+max_value = 0.0
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+text = "Return Menu"
+
 [node name="Teleporter" parent="." instance=ExtResource("14_kop2x")]
 position = Vector2(-192, 5044)
 
@@ -146,4 +422,5 @@ position = Vector2(-192, 5044)
 stream = ExtResource("15_h380c")
 volume_db = -40.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqrhv7v2mxca5"]
+
+[ext_resource type="Script" path="res://npc/npc.gd" id="1_njtdq"]
+[ext_resource type="Script" path="res://npc/dialogue/dialogue_box.gd" id="2_clji4"]
+[ext_resource type="Texture2D" uid="uid://dvjpow1ete6qb" path="res://npc/sophia.png" id="3_uovn0"]
+
+[sub_resource type="Resource" id="Resource_5gegu"]
+script = ExtResource("2_clji4")
+dialogues = Array[String](["Hey there , I am Sophia nice to meet you , I am here to guide you through your adventure.", "Try to get closer to the chest and hit ENTER to open it and get the rewards inside there"])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7bjx"]
+radius = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eufti"]
+radius = 34.0
+height = 122.0
+
+[node name="Npc" type="Area2D"]
+script = ExtResource("1_njtdq")
+dialogue_box = SubResource("Resource_5gegu")
+
+[node name="NpcSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_uovn0")
+
+[node name="ActivationArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i7bjx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_eufti")
+debug_color = Color(0.222286, 0.560585, 0.261665, 0.42)

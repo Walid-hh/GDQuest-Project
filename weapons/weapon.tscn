@@ -20,11 +20,9 @@ one_shot = true
 [node name="HandRight" type="Sprite2D" parent="."]
 position = Vector2(0, 25)
 rotation = 0.261799
-scale = Vector2(1, 1)
 texture = ExtResource("4_xf46e")
 
 [node name="HandLeft" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
 rotation = -0.174533
-scale = Vector2(1, 1)
 texture = ExtResource("4_xf46e")

@@ -6,10 +6,10 @@ class_name Mob
 @export var hit_box : HitBoxComponent
 const MAX_SPEED := 300.0
 const ACCELERATION := 600.0
-var target : Player
 var attack_damage := 1
 var knockback := 700
 var direction : Vector2
+var target : Player
 
 func _ready() -> void:
 	activation_area.body_entered.connect(func(body) -> void :
