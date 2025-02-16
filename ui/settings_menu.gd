@@ -23,6 +23,6 @@ func _ready() -> void:
 	sfx_slider.drag_ended.connect(func(value_changed) -> void :
 		if value_changed:
 			var sfx_bus = AudioServer.get_bus_index("Sfx")
-			var value = sfx_bus.value
+			var value = sfx_slider.value
 			AudioServer.set_bus_volume_db(sfx_bus , value)
 			)
