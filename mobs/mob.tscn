@@ -105,8 +105,9 @@ debug_color = Color(0.858999, 0.146617, 0.273656, 0.42)
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_7a2gj")
+bus = &"Sfx"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_7ehsd")
-volume_db = -10.0
+bus = &"Sfx"

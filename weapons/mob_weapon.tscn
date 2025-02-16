@@ -11,7 +11,7 @@ weapon = ExtResource("2_81w1t")
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_8vu7a")
-volume_db = -15.0
+bus = &"Sfx"
 
 [node name="CooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true

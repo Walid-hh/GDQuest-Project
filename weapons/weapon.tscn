@@ -10,7 +10,7 @@ script = ExtResource("1_8k8px")
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_tnu1w")
-volume_db = -15.0
+bus = &"Sfx"
 
 [node name="CooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true

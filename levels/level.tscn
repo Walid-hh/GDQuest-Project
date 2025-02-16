@@ -397,14 +397,14 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-min_value = -30.0
+min_value = -50.0
 max_value = 0.0
 
 [node name="SfxSlider" type="HSlider" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
-min_value = -30.0
+min_value = -80.0
 max_value = 0.0
 
 [node name="MenuButton" type="Button" parent="CanvasLayer/MenuController/SettingsMenu/Containerbackground/VBoxContainer"]
@@ -420,7 +420,7 @@ position = Vector2(-192, 5044)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_h380c")
-volume_db = -40.0
+volume_db = -30.0
 autoplay = true
 bus = &"Music"
 parameters/looping = true

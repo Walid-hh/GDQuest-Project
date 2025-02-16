@@ -19,3 +19,4 @@ res://npc/npc.tscn
 res://levels/pause_menu.gd
 res://ui/settings_menu.gd
 res://ui/menu_controller.gd
+res://default_bus_layout.tres

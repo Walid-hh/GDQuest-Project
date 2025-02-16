@@ -220,9 +220,9 @@ health_component = NodePath("../../HealthComponent")
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_tcjm8")
-volume_db = -5.0
+bus = &"Sfx"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ur113")
-volume_db = -10.0
+bus = &"Sfx"

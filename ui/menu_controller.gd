@@ -13,7 +13,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			settings_menu.visible = false
 			visible = false
 			pause_menu.visible = false
-			print("settings called")
 	else:
 		if event.is_action_pressed("ui_cancel"):
 			toggle_visible()
