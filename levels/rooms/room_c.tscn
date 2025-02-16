@@ -30,9 +30,5 @@ tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAP//AAAAAAA
 tile_set = ExtResource("2_fateu")
 
 [node name="Chest" parent="." instance=ExtResource("5_jjkr0")]
-position = Vector2(961, 427)
-item_list = Array[ExtResource("6_wsy7r")]([ExtResource("7_c5vxl")])
-
-[node name="Chest2" parent="." instance=ExtResource("5_jjkr0")]
-position = Vector2(830, 1072)
+position = Vector2(961, 432)
 item_list = Array[ExtResource("6_wsy7r")]([ExtResource("7_c5vxl")])

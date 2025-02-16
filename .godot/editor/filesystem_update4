@@ -20,3 +20,4 @@ res://levels/pause_menu.gd
 res://ui/settings_menu.gd
 res://ui/menu_controller.gd
 res://default_bus_layout.tres
+res://levels/rooms/room_c.tscn

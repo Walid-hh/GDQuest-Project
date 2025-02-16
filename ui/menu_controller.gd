@@ -2,6 +2,7 @@ extends Control
 
 @onready var pause_menu: Control = %PauseMenu
 @onready var settings_menu: Control = %SettingsMenu
+@onready var end_menu: Control = %EndMenu
 
 func toggle_visible() -> void:
 	visible = !visible
@@ -18,4 +19,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			toggle_visible()
 		
 func  _process(delta: float) -> void:
-	get_tree().paused = true if visible else false
+	get_tree().paused = true if visible or end_menu.visible else false
